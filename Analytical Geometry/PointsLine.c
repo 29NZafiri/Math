@@ -1,0 +1,37 @@
+#include "PointsLine.h"
+#include <stdio.h>
+
+#include "FloatMath.h"
+#include "GCF.h"
+
+void pntsLn(void) {
+    double x1, y1, x2, y2;
+    printf("Please enter the first X coordinate\n");
+    scanf("%lf", &x1);
+    printf("Please enter the first Y coordinate\n");
+    scanf("%lf", &y1);
+    printf("Please enter the second X coordinate\n");
+    scanf("%lf", &x2);
+    printf("Please enter the second Y coordinate\n");
+    scanf("%lf", &y2);
+    double y = y2 - y1;
+    double x = x2 - x1;
+    if (x == 0) {
+        printf("The slope is undefined, as the line is vertical\n");
+    }
+    if (x < 0) {
+        x *= -1;
+        y *= -1;
+    }
+    double slope = y/x;
+    if (DbInt(x) && DbInt(y) && x != 0) {
+        int g = GCF((int)x, (int)y);
+        x /= g;
+        y /= g;
+    }
+    double b = (x*y1-y*x1)/x;
+    printf("The equation for this line is: y = %.17g x + %.17g\n", slope, x);
+    if (x == 0) printf("In standard form: y = %.17g/%.17g", b/x, y);
+    else printf("In standard form: %.17gx %+.17gy = %.17g", -y, x, b/x);
+
+}

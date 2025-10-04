@@ -1,0 +1,6 @@
+#ifndef PYTHAGOREANINEQUALITY_H
+#define PYTHAGOREANINEQUALITY_H
+
+void pythInequal(void);
+
+#endif //PYTHAGOREANINEQUALITY_H

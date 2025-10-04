@@ -1,0 +1,6 @@
+#ifndef LATERALPYRAMIDAREA_H
+#define LATERALPYRAMIDAREA_H
+
+void ltArea(void);
+
+#endif //LATERALPYRAMIDAREA_H
