@@ -205,8 +205,8 @@ void plyfct(void) {
         }
         printf("\nThe roots of the quadratic are:\n");
         for (int i = 0; i < zcnt; i++) {
-            if (zeros[i].q == 1) printf("%d,", zeros[i].p);
-            else printf("%d/%d,", zeros[i].p, zeros[i].q);
+            if (zeros[i].q == 1) printf("%d, ", zeros[i].p);
+            else printf("%d/%d, ", zeros[i].p, zeros[i].q);
         }
     }
 
