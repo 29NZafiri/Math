@@ -5,25 +5,26 @@
 
 #include "FloatMath.h"
 #include "spsqrt.h"
+#include "sscanf.h"
 
 
 void rghCone(void) {
     int solve;
     printf("Do you have the Slant Height(1), or the Cone Height(2)?");
-    scanf("%d",&solve);
+    ssscanf("%d",&solve);
     double r, h, l;
     if (solve == 1) {
         printf("Please enter the radius\n");
-        scanf("%lf", &r);
+        ssscanf("%lf", &r);
         printf("Please enter the Cone Height\n");
-        scanf("%lf", &h);
+        ssscanf("%lf", &h);
         l = h*h+r*r;
     }
     if (solve == 2) {
         printf("Please enter the radius\n");
-        scanf("%lf", &r);
+        ssscanf("%lf", &r);
         printf("Please enter the Slant Height\n");
-        scanf("%lf", &l);
+        ssscanf("%lf", &l);
         h = sqrt(l*l-r*r);
     }
     if (solve == 1 || solve == 2){

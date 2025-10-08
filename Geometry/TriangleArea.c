@@ -4,15 +4,16 @@
 #include <stdlib.h>
 
 #include "spsqrt.h"
+#include "sscanf.h"
 
 void triArea(void) {
     double a, b, c;
     printf("Enter the first side of the triangle: \n");
-    scanf("%lf", &a);
+    ssscanf("%lf", &a);
     printf("Enter the second side of the triangle: \n");
-    scanf("%lf", &b);
+    ssscanf("%lf", &b);
     printf("Enter the third side of the triangle: \n");
-    scanf("%lf", &c);
+    ssscanf("%lf", &c);
     double s = (a + b + c) / 2;
     double val = s * (s - a) * (s - b) * (s - c);
     double area = sqrt(val);

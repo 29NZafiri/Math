@@ -7,16 +7,17 @@
 #include "func.h"
 #include "GCF.h"
 #include "spsqrt.h"
+#include "sscanf.h"
 
 void Quadrics(void) {
     //Assign values to the coefficients of the quadratics
     double a, b, c;
     printf("Enter a\n");
-    scanf("%lf", &a);
+    ssscanf("%lf", &a);
     printf("Enter b\n");
-    scanf("%lf", &b);
+    ssscanf("%lf", &b);
     printf("Enter c\n");
-    scanf("%lf", &c);
+    ssscanf("%lf", &c);
 
     if (a == 0) {
         // Prevent division by 0
@@ -127,7 +128,7 @@ void Quadrics(void) {
     double ans;
     while (x != 0) {
         printf("Would you like to try any numbers? When done, enter 0. \n");
-        scanf("%lf", &x);
+        ssscanf("%lf", &x);
         ans = f(coef, 3, x);
         printf("f(%.17g) = %.17g\n", x, ans);
     }

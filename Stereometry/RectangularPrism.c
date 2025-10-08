@@ -3,15 +3,16 @@
 #include <stdlib.h>
 
 #include "spsqrt.h"
+#include "sscanf.h"
 
 void RectPrism(void) {
     double l, w, h;
     printf("Enter the length of the Rectangular Prism\n");
-    scanf("%lf", &l);
+    ssscanf("%lf", &l);
     printf("Enter the width of the Rectangular Prism\n");
-    scanf("%lf", &w);
+    ssscanf("%lf", &w);
     printf("Enter the height of the Rectangular Prism\n");
-    scanf("%lf", &h);
+    ssscanf("%lf", &h);
     double SA = 2*((l*w)+(w*h)+(l*h));
     double Vol = l*w*h;
     char* SD = dbspsqrt((l*l)+(w*w)+(h*h));

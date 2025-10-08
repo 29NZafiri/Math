@@ -5,6 +5,7 @@
 #include "PolygonArea.h"
 #include "PythagoreanInequality.h"
 #include "PythagoreanTheorem.h"
+#include "sscanf.h"
 #include "TrapezoidArea.h"
 #include "TriangleArea.h"
 
@@ -18,7 +19,7 @@ void Geometry(void) {
         "Use the Pythagorean Inequality (6)\n"
         "Find angle measures in Polygons (7)\n"
         "Which number?\n");
-    scanf("%d", &choice);
+    ssscanf("%d", &choice);
     switch(choice) {
         case 1:
             pyththrm();

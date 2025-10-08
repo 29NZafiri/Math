@@ -1,15 +1,16 @@
 #include "PythagoreanInequality.h"
 #include <stdio.h>
 #include "FloatMath.h"
+#include "sscanf.h"
 
 void pythInequal(void) {
     double a, b, c;
     printf("Enter the first side of the triangle: \n");
-    scanf("%lf", &a);
+    ssscanf("%lf", &a);
     printf("Enter the second side of the triangle: \n");
-    scanf("%lf", &b);
+    ssscanf("%lf", &b);
     printf("Enter the third side of the triangle: \n");
-    scanf("%lf", &c);
+    ssscanf("%lf", &c);
     double sides[3];
     if (a >= b && a >= c) {
         sides[0] = a;

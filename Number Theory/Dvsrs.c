@@ -1,6 +1,8 @@
 #include "Dvsrs.h"
 #include <stdio.h>
 
+#include "sscanf.h"
+
 void factors(int n) {
     int sz = 0;
     int x = 0;
@@ -31,7 +33,7 @@ void factors(int n) {
 void Dvsrs(void) {
     int n = 5;
     printf("Please enter a number.\n");
-    scanf("%d", &n);
+    ssscanf("%d", &n);
     while (n != 0) {
         int sz = 0;
         int x = 0;
@@ -58,6 +60,6 @@ void Dvsrs(void) {
             printf("%d is an abundant number, as %d > %d.\n", n, n, x);
         }
         printf("Any other numbers? (0 for none)\n");
-        scanf("%d", &n);
+        ssscanf("%d", &n);
     }
 }

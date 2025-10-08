@@ -4,13 +4,15 @@
 #include "Permutations.h"
 #include <stdio.h>
 
+#include "sscanf.h"
+
 void cnt(void) {
     int choice;
     printf("Compute Permutations (1)\n"
     "Compute Combinations (2)\n"
     "Find the nth Fibonacci number (3)\n"
     "What number?\n");
-    scanf("%d", &choice);
+    ssscanf("%d", &choice);
     switch(choice) {
         case 1:
             Perms();

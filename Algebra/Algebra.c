@@ -7,6 +7,7 @@
 #include "SmpSqrt.h"
 #include "Quadractics.h"
 #include "SlvSys.h"
+#include "sscanf.h"
 #include "USynthDiv.h"
 
 void Algebra(void){
@@ -20,7 +21,7 @@ void Algebra(void){
     "Plug values into a Function (7)\n"
     "Factor a Polynomial (8)\n"
     "What number?\n");
-    scanf("%d", &choice);
+    ssscanf("%d", &choice);
     switch(choice) {
         case 1:
             Quadrics();

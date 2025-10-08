@@ -3,10 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "sscanf.h"
+
 void usynthdiv(void) {
     int cnt; //Amount of terms in the polynomial
     printf("How many terms are in your polynomial (The degree of the polynomial+1)?\n");
-    scanf("%d", &cnt);
+    ssscanf("%d", &cnt);
 
     double* coefs = malloc(cnt * sizeof(double)); //List of terms in the polynomial
     if (!coefs) {

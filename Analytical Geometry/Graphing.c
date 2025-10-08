@@ -7,6 +7,7 @@
 #include "PointsLine.h"
 #include "Slope.h"
 #include "SlopePointLine.h"
+#include "sscanf.h"
 
 void anaGeo(void) {
     int choice;
@@ -17,7 +18,7 @@ void anaGeo(void) {
         "Find the Equation for a Line with a Slope and a Point (5)\n"
         "Find the Distance between a Point and a Line (6)\n"
         "What number?\n");
-    scanf("%d", &choice);
+    ssscanf("%d", &choice);
     switch(choice) {
         case 1:
             lnLength();

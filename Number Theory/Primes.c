@@ -3,13 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "sscanf.h"
+
 int* sieve(int n, int* primeCount);
 
 void Primes(void) {
     int count;
     int up;
     printf("What would you like to go up to?\n");
-    scanf("%d", &up);
+    ssscanf("%d", &up);
     int* primes = sieve(up, &count);
     printf("The primes from 0 to %d are:\n", up);
     if (count > 0) {

@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "GCF.h"
+#include "sscanf.h"
 
 void umod(void) {
     int b = 1;
@@ -10,9 +11,9 @@ void umod(void) {
         b = 1;
         int a;
         printf("What number?\n");
-        scanf("%d", &a);
+        ssscanf("%d", &a);
         printf("What is the modulus?\n");
-        scanf("%d", &b);
+        ssscanf("%d", &b);
         if (b != 0){
             int m = a % b;
             int x = 0;
@@ -32,11 +33,11 @@ void testmod(void) {
     printf("Enter 0 for the modulus to exit\n");
     while (c != 0) {
         printf("What is the first number?\n");
-        scanf("%d", &a);
+        ssscanf("%d", &a);
         printf("What is the second number?\n");
-        scanf("%d", &b);
+        ssscanf("%d", &b);
         printf("What is the modulus?\n");
-        scanf("%d", &c);
+        ssscanf("%d", &c);
         if (c != 0 && (a - b) % c == 0) {
             printf("%d \u2261 %d (mod %d)\n", a, b, c);
         }
@@ -49,9 +50,9 @@ void testmod(void) {
 void modinv(void) {
     int a, b;
     printf("What number?\n");
-    scanf("%d", &a);
+    ssscanf("%d", &a);
     printf("What is the modulus?\n");
-    scanf("%d", &b);
+    ssscanf("%d", &b);
     if (GCF(a, b) != 1) {
         printf("%d has no modular inverse in mod %d\n", a, b);
     }

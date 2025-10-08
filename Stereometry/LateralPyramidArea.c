@@ -1,6 +1,8 @@
 #include "LateralPyramidArea.h"
 #include <math.h>
 #include <stdio.h>
+
+#include "sscanf.h"
 #include "../Constants.h"
 
 
@@ -8,7 +10,7 @@ void ltArea(void) {
     double s, l;
     int n;
     printf("Please enter the base side length\n");
-    scanf("%lf", &s);
+    ssscanf("%lf", &s);
     printf("Please enter the slant height\n");
     scanf("%lf", &l);
     printf("Please enter the number of sides the base has\n");

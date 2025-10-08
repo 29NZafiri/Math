@@ -7,22 +7,23 @@
 #include "FloatMath.h"
 #include "GCF.h"
 #include "spsqrt.h"
+#include "sscanf.h"
 
 
 void imgMth(void) {
     double a, a1, a2, b, b1, b2;
     int choice;
     printf("Enter the real part of the first number\n");
-    scanf("%lf", &a1);
+    ssscanf("%lf", &a1);
     printf("Enter the imaginary part of the first number\n");
-    scanf("%lf", &b1);
+    ssscanf("%lf", &b1);
     printf("What operation would you like to perform? Addition (1), Subtraction (2), Multiplication (3), Division (4), Finding Square Roots (5), Squaring (6), or Taking Absolute Value (7)\n");
-    scanf("%d", &choice);
+    ssscanf("%d", &choice);
     if (choice < 5) {
         printf("Enter the real part of the second number\n");
-        scanf("%lf", &a2);
+        ssscanf("%lf", &a2);
         printf("Enter the imaginary part of the second number\n");
-        scanf("%lf", &b2);
+        ssscanf("%lf", &b2);
     }
     switch (choice) {
         case 1:

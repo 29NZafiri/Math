@@ -1,14 +1,16 @@
 #include "RightCylinder.h"
 #include <stdio.h>
+
+#include "sscanf.h"
 #include "../Constants.h"
 
 
 void rghCyl(void) {
     double r, h;
     printf("Please enter the radius of the cylinder: ");
-    scanf("%lf", &r);
+    ssscanf("%lf", &r);
     printf("Please enter the height of the cylinder: ");
-    scanf("%lf", &h);
+    ssscanf("%lf", &h);
     double Vol = r*r*h;
     double LatArea = 2*r*h;
     double TotArea = LatArea+2*r*r;

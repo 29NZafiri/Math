@@ -4,12 +4,13 @@
 #include <stdlib.h>
 
 #include "spsqrt.h"
+#include "sscanf.h"
 
 void pyththrm(void) {
     int solve;
     double ans = 0;
     printf("Are you looking for the leg(1) or the hypotenuse(2)\n");
-    scanf("%d", &solve);
+    ssscanf("%d", &solve);
     if (solve == 1) {
         ans = pythL();
         printf("The missing leg is %.17g\n", sqrt(ans));
@@ -30,9 +31,9 @@ void pyththrm(void) {
 double pythL(void) {
     double h, l;
     printf("What is the hypotenuse?\n");
-    scanf("%lf", &h);
+    ssscanf("%lf", &h);
     printf("What is the leg?\n");
-    scanf("%lf", &l);
+    ssscanf("%lf", &l);
     double ans = h*h - l*l;
     return ans;
 }
@@ -40,7 +41,7 @@ double pythL(void) {
 double pythH(void) {
     double a, b;
     printf("What is the first leg?\n");
-    scanf("%lf", &a);
+    ssscanf("%lf", &a);
     printf("What is the second leg?\n");
     scanf("%lf", &b);
     double ans = a*a + b*b;

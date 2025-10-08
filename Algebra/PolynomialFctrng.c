@@ -5,6 +5,7 @@
 
 #include "func.h"
 #include "GCF.h"
+#include "sscanf.h"
 
 struct zerostruc {
     int p;
@@ -42,7 +43,7 @@ int* divisors(int n, int* cnt) {
 void plyfct(void) {
     int cnt; //Amount of terms in the polynomial
     printf("How many terms are in your polynomial (The degree of the polynomial+1)?\n");
-    scanf("%d", &cnt);
+    ssscanf("%d", &cnt);
 
     int* coefs = malloc(cnt * sizeof(int)); //List of terms in the polynomial
     if (!coefs) {

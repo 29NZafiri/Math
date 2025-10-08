@@ -1,6 +1,8 @@
 #include "PolygonArea.h"
 #include <math.h>
 #include <stdio.h>
+
+#include "sscanf.h"
 #include "../Constants.h"
 
 void polyArea(void) {
@@ -8,23 +10,23 @@ void polyArea(void) {
     double perimeter = 0, apothem = 0;
     double n = 0, s = 0;
     printf("Do you have the perimeter(1)?\n");
-    scanf("%d", &cperm);
+    ssscanf("%d", &cperm);
     printf("Do you have the apothem(1)?\n");
-    scanf("%d", &capoth);
+    ssscanf("%d", &capoth);
     printf("How many sides does the polygon have?\n");
-    scanf("%lf", &n);
+    ssscanf("%lf", &n);
     if (cperm == 1) {
         printf("What is the perimeter?\n");
-        scanf("%lf", &perimeter);
+        ssscanf("%lf", &perimeter);
     }
     else {
         printf("What is the length of a side?\n");
-        scanf("%lf", &s);
+        ssscanf("%lf", &s);
         perimeter = n * s;
     }
     if (capoth == 1) {
         printf("What is the apothem?\n");
-        scanf("%lf", &apothem);
+        ssscanf("%lf", &apothem);
     }
     else if (s != 0) {
         apothem = s / (2 * tan(PI / n));

@@ -6,6 +6,7 @@
 #include "Fctrs.h"
 #include "LCM.h"
 #include "Modulo.h"
+#include "sscanf.h"
 
 void NumThry(void){
     int choice;
@@ -18,7 +19,7 @@ void NumThry(void){
     "Check for Modular Congruence (7)\n"
     "Find the Modular Inverse of a Number (8)\n"
     "What number?\n");
-    scanf("%d", &choice);
+    ssscanf("%d", &choice);
     switch(choice) {
         case 1:
             Dvsrs();
