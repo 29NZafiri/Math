@@ -1,14 +1,19 @@
 #include "Combinations.h"
 #include <stdio.h>
-#include "Factorial.h"
 #include "sscanf.h"
 
 void nCr(void) {
+    printf("\n");
     int n, r;
-    printf("Please enter n\n");
+    printf("How many objects? (n in nCr)\n");
     ssscanf("%d", &n);
-    printf("Please enter m\n");
+    printf("How many to pick? (r in nCr)\n");
     ssscanf("%d", &r);
-    long long int result = factorial(n) / (factorial(n - r) * factorial(r));
-    printf("%lld\n", result);
+    unsigned long long int num = 1, denom = 1;
+    for (unsigned long long int i = 0; i < r; i++)
+        num *= n-i;
+    for (unsigned long long int i = 2; i <= r; i++)
+        denom *= i;
+    unsigned long long int result = num / denom;
+    printf("%dC%d = %lld\n", n, r, result);
 }

@@ -11,8 +11,8 @@ void Perms(void) {
     ssscanf("%d", &n);
     printf("How many spaces? (k in nPk)\n");
     ssscanf("%d", &k);
-    long long int num = factorial(n);
-    long long int den = factorial(n-k);
-    long long int perm = num/den;
+    unsigned long long int perm = 1;
+    for (unsigned long long int i = 0; i < k; i++)
+        perm *= n-i;
     printf("%dP%d = %lld", n, k, perm);
 }
