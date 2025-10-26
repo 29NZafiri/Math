@@ -31,8 +31,8 @@ void pntsLn(void) {
         y /= g;
     }
     double b = (x*y1-y*x1)/x;
-    printf("The equation for this line is: y = %.17g x + %.17g\n", slope, x);
-    if (x == 0) printf("In standard form: y = %.17g/%.17g", b/x, y);
-    else printf("In standard form: %.17gx %+.17gy = %.17g", -y, x, b/x);
+    printf("The equation for this line is: y = %.15gx + %.15g\n", slope, x);
+    if (x == 0) printf("In standard form: y = %.15g/%.15g", b/x, y);
+    else printf("In standard form: %.15gx %+.15gy = %.15g", -y, x, b*x);
 
 }

@@ -13,6 +13,6 @@ void slpPntLn(void) {
     printf("Please enter the y coordinate.\n");
     ssscanf("%lf", &y1);
     double b = y1 - m*x1;
-    printf("The equation for this line is: y = %.17gx %+.17g\n", m, b);
-    printf("In Standard Form: %.17g x + y = %.17g\n", -m, b);
+    printf("The equation for this line is: y = %.15gx %+.15g\n", m, b);
+    printf("In Standard Form: %.15gx + y = %.15g\n", -m, b);
 }
