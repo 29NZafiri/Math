@@ -3,23 +3,26 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "FloatMath.h"
 #include "func.h"
 #include "GCF.h"
 #include "sscanf.h"
+
+#define TOO_LONG 500000
 
 struct zerostruc {
     int p;
     int q;
 };
 
-int intSynthDiv(int* coefs, const int cnt, const int zero) {
+int intSynthDiv(int* coefs, const int cnt, const int zero) { //Synthetic division for integers while mutating coefs
     for (int i = 1; i < cnt; i++) {
         coefs[i] = coefs[i] + coefs[i-1] * zero;
     }
     return coefs[cnt-1];
 }
 
-double ratSynthDiv(double* coefs, const int cnt, const double zero) {
+double ratSynthDiv(double* coefs, const int cnt, const double zero) { //Synthetic division for rationals while mutating coefs
     for (int i = 1; i < cnt; i++) {
         coefs[i] = coefs[i] + coefs[i-1] * zero;
     }
@@ -67,22 +70,33 @@ void plyfct(void) {
         }
         if (!safe) {
             printf("0 polynomial. No factoring possible");
+            free(coefs);
+            free(doubcoefs);
             return;
         }
         safe -= abs(coefs[cnt-1]);
         if (!safe) {
             printf("Constant. No factoring possible");
+            free(coefs);
+            free(doubcoefs);
             return;
         }
     }
 
     int p = abs(coefs[cnt - 1]); //Last term of the polynomial
-    //We only need the value at index [cnt-1], so we store it in a variable to make life easier
+    int q = abs(coefs[0]); //First term of the polynomial
+    //We only need the value at these indexes so we store it in a variable to make life easier
 
-    int xtra = 0;
-    while (p == 0) {
-        xtra++;
-        p = abs(coefs[cnt - 1 - xtra]);
+    int xtraq = 0; //How many leading zeros
+    while (q == 0) { //Find the real first term of the Polynomial in case the user provided zeros for leading coefs
+        xtraq++;
+        q = abs(coefs[xtraq]);
+    }
+
+    int xtrap = 0; //How many trailing zeros
+    while (p == 0) { //Find the real last term of the Polynomial in case the user provided zeros for trailing coefs
+        xtrap++;
+        p = abs(coefs[cnt - 1 - xtrap]);
     }
 
     int pfctrcnt;
@@ -90,17 +104,38 @@ void plyfct(void) {
     struct zerostruc* zeros = malloc(sizeof(struct zerostruc) * (cnt-1));
     if (!zeros) {
         printf("Memory could not be allocated.\n");
+        free(doubcoefs);
         free(coefs);
         free(fctrs);
         return;
     }
 
     int zcnt = 0;
+    int endless = 0; //Protect against endless loop
     for (int i = 0; i < pfctrcnt; i++) { //This is the checking for zeros part
         int* tempcoefs = malloc(cnt * sizeof(int));
         int tcnt = cnt;
+        if (!tempcoefs) {
+            endless++;
+            if (endless >= TOO_LONG) {
+                printf("Endless loop! Terminating");
+                return;
+            }
+            i--;
+            continue;
+        }
         int* tempmcoefs = malloc(cnt * sizeof(int));
         int mtcnt = cnt;
+        if (!tempmcoefs) {
+            endless++;
+            if (endless >= TOO_LONG) {
+                printf("Endless loop! Terminating");
+                return;
+            }
+            free(tempcoefs);
+            i--;
+            continue;
+        }
         memcpy(tempcoefs, coefs, sizeof(int) * cnt);
         memcpy(tempmcoefs, coefs, sizeof(int) * cnt);
 
@@ -120,8 +155,7 @@ void plyfct(void) {
         free(tempmcoefs);
     }
 
-    if (abs(coefs[0]) != 1) {
-        int q = abs(coefs[0]);
+    if (q != 1) { //If there are rational zeros then we find them here
         int qfctrcnt;
         int* qfctrs = divisors(q, &qfctrcnt);
         for (int i = 0; i < pfctrcnt; i++) {
@@ -129,18 +163,37 @@ void plyfct(void) {
                 if (GCF(fctrs[i], qfctrs[j]) == 1) {
                     double* tempcoefs = malloc(cnt * sizeof(double));
                     int tcnt = cnt;
+                    if (!tempcoefs) {
+                        endless++;
+                        if (endless >= TOO_LONG) {
+                            printf("Endless loop! Terminating");
+                            return;
+                        }
+                        i--;
+                        continue;
+                    }
                     double* tempmcoefs = malloc(cnt * sizeof(double));
                     int mtcnt = cnt;
+                    if (!tempmcoefs) {
+                        endless++;
+                        if (endless >= TOO_LONG) {
+                            printf("Endless loop! Terminating");
+                            return;
+                        }
+                        free(tempcoefs);
+                        i--;
+                        continue;
+                    }
                     memcpy(tempcoefs, doubcoefs, sizeof(double) * cnt);
                     memcpy(tempmcoefs, doubcoefs, sizeof(double) * cnt);
 
-                    while (ratSynthDiv(tempcoefs, tcnt, (double)fctrs[i]/qfctrs[j]) == 0) {
+                    while (DbZero( ratSynthDiv(tempcoefs, tcnt, (double)fctrs[i]/qfctrs[j]) )) {
                         struct zerostruc zer = {fctrs[i], qfctrs[j]};
                         zeros[zcnt] = zer;
                         zcnt++;
                         tcnt--;
                     }
-                    while (ratSynthDiv(tempmcoefs, mtcnt, -(double)fctrs[i]/qfctrs[j]) == 0) {
+                    while (DbZero( ratSynthDiv(tempmcoefs, mtcnt, -(double)fctrs[i]/qfctrs[j]) )) {
                         struct zerostruc mzer = {-fctrs[i], qfctrs[j]};
                         zeros[zcnt] = mzer;
                         zcnt++;
@@ -155,20 +208,23 @@ void plyfct(void) {
     }
     free(fctrs);
 
-    if (zcnt + xtra != cnt - 1) { //cnt-1 is the degree of the polynomial
+    printf("xq = %d\n", xtraq);
+    printf("xp = %d\n", xtrap);
+    printf("zcnt = %d\n", zcnt);
+    if (zcnt + xtrap != cnt - 1 - xtraq) { //cnt-1 is the degree of the polynomial
         int tcnt = cnt;
         double* remain = malloc(sizeof(double) * tcnt);
         memcpy(remain, doubcoefs, sizeof(double) * tcnt);
         printf("The polynomial was not able to be fully factored. Only %d factors were found.\n", zcnt);
         if (coefs[0] < 0) printf("-");
-        if (xtra > 0) printf("x^%d", xtra);
+        if (xtrap > 0) printf("x^%d", xtrap);
         for (int i = 0; i < zcnt; i++) {
             if (zeros[i].q == 1)
                 printf("(x%+d)", -zeros[i].p);
             else
                 printf("(%dx%+d)", zeros[i].q, -zeros[i].p);
         }
-        for (int i = 0; i < zcnt; i++) {
+        for (int i = 0; i < zcnt; i++) { //Do the division of the known factors to find the remaining unfactorable part
             double* tempremain = synthdiv(remain, tcnt, 1, (double)zeros[i].p/zeros[i].q);
             if (!tempremain) {
                 free(remain);
@@ -185,9 +241,9 @@ void plyfct(void) {
         printf("(");
         for (int i = 0; i < tcnt; i++) {
             if (remain[i] == 1) printf("+x^%d", i);
-            if (remain[i] == -1) printf("-x^%d", i);
-            if (remain[i] != 0){
-                printf("%+.17gx^%d", remain[i], tcnt - i - 1);
+            else if (remain[i] == -1) printf("-x^%d", i);
+            else if (remain[i] != 0){
+                printf("%+.15gx^%d", remain[i], tcnt - i - 1);
             }
         }
         printf(")\n");
@@ -197,7 +253,7 @@ void plyfct(void) {
     else {
         printf("The polynomial was fully factored.\n");
         if (coefs[0] < 0) printf("-");
-        if (xtra > 0) printf("x^%d", xtra);
+        if (xtrap > 0) printf("x^%d", xtrap);
         for (int i = 0; i < zcnt; i++) {
             if (zeros[i].q == 1)
                 printf("(x%+d)", -zeros[i].p);
@@ -207,10 +263,13 @@ void plyfct(void) {
         printf("\nThe roots of the quadratic are:\n");
         for (int i = 0; i < zcnt; i++) {
             if (zeros[i].q == 1) printf("%d, ", zeros[i].p);
-            else printf("%d/%d, ", zeros[i].p, zeros[i].q);
+            else {
+                int smp = GCF(zeros[i].q, zeros[i].p);
+                if (zeros[i].q < 0) smp *= -1;
+                printf("%d/%d, ", zeros[i].p/smp, zeros[i].q/smp);
+            }
         }
     }
-
     free(doubcoefs);
     free(coefs);
     free(zeros);
