@@ -7,8 +7,8 @@
 #include "func.h"
 #include "GCF.h"
 #include "sscanf.h"
+#include "Constants.h"
 
-#define TOO_LONG 500000
 
 struct zerostruc {
     int p;
