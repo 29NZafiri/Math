@@ -207,10 +207,7 @@ void plyfct(void) {
         free(qfctrs);
     }
     free(fctrs);
-
-    printf("xq = %d\n", xtraq);
-    printf("xp = %d\n", xtrap);
-    printf("zcnt = %d\n", zcnt);
+    
     if (zcnt + xtrap != cnt - 1 - xtraq) { //cnt-1 is the degree of the polynomial
         int tcnt = cnt;
         double* remain = malloc(sizeof(double) * tcnt);
@@ -274,3 +271,4 @@ void plyfct(void) {
     free(coefs);
     free(zeros);
 }
+
