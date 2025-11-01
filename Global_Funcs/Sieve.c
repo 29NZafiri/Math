@@ -6,20 +6,20 @@
 #include "Constants.h"
 
 int* sieve(const int n, int* primeCount) {
-    int count = 0;
+    int count = n; //How many primes are there
+    //Complementary Counting is used (Remove what we don't want)
+
     bool* isPrime = malloc((n + 1) * sizeof(bool)); //Allocate the necessary memory for the list
     if (!isPrime) return NULL;
-    for (int i = 2; i <= n; i++) {
+    for (int i = 2; i <= n; i++)
         isPrime[i] = true;
-    }
+
+    count--; //1 is not prime, but doesn't get counted in the loop
     for (int i = 2; i*i <= n; i++) {
         for (int j = i*i; j <= n; j+=i) {
+            if (isPrime[j])
+                count--;
             isPrime[j] = false;
-        }
-    }
-    for (int i = 2; i <= n; i++) {
-        if (isPrime[i]){
-            count++;
         }
     }
     int* primes = malloc(count * sizeof(int));
@@ -28,11 +28,10 @@ int* sieve(const int n, int* primeCount) {
         return NULL;
     }
     int index = 0;
-    for (int i = 2; i <= n; i++) {
-        if (isPrime[i]) {
+    for (int i = 2; i <= n; i++)
+        if (isPrime[i])
             primes[index++] = i;
-        }
-    }
+
     free(isPrime);
     *primeCount = count;
     if (index != count) {
