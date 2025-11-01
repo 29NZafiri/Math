@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Constants.h"
 
 void ssscanf(const char* type, void* p) {
-    char num[100];
+    char num[BUFFER_SIZE];
     scanf("%s", num);
     if (strcmp(type, "%d") == 0) {
         int res = (int)strtol(num, NULL, 10);
