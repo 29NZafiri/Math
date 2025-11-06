@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     while (sub != 0) {
         printf("\nWhat would you like to do?\n");
         printf("Geometry (1)\n"
-            " Stereometry (2)\n"
+            "Stereometry (2)\n"
             "Algebra (3)\n"
             "Analytical Geometry/Graphing (4)\n"
             "Number Theory (5)\n"
