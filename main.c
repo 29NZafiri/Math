@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     }
     else {
         printf("Set locale to UTF-8? (Recommended to do so) Y/N\n");
-        char* utf[BUFFER_SIZE];
+        char utf[BUFFER_SIZE];
         scanf("%99s", utf);
         if (strcmp(utf, "Y") == 0 || strcmp(utf, "y") == 0) {
             printf("Setting Locale...\n");
