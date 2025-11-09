@@ -5,6 +5,7 @@
 #include "Midpoint.h"
 #include "PointLineDistance.h"
 #include "PointsLine.h"
+#include "RotatePoint.h"
 #include "Slope.h"
 #include "SlopePointLine.h"
 #include "sscanf.h"
@@ -17,6 +18,7 @@ void anaGeo(void) {
         "Find the Equation for a Line with 2 Points (4)\n"
         "Find the Equation for a Line with a Slope and a Point (5)\n"
         "Find the Distance between a Point and a Line (6)\n"
+        "Rotate a Point around another point (7)\n"
         "What number?\n");
     ssscanf("%d", &choice);
     switch(choice) {
@@ -38,6 +40,8 @@ void anaGeo(void) {
         case 6:
             dstPntLn();
             break;
+        case 7:
+            rtPnt();
         default:
             break;
     }
