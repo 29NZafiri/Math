@@ -16,6 +16,7 @@ void nCr(void) {
     for (unsigned long long int i = 2; i <= r; i++)
         denom *= i;
     unsigned long long int result = num / denom;
-    printf("%dC%d = %lld\n", n, r, result);
+    printf("%dC%d = %lld\n", n, ir, result);
 }
+
 
