@@ -3,12 +3,13 @@
 #include "sscanf.h"
 
 void nCr(void) {
-    printf("\n");
-    int n, r;
+    int n, ir, r;
     printf("How many objects? (n in nCr)\n");
-    ssscanf("%d", &n);
+    scanf("%d", &n);
     printf("How many to pick? (r in nCr)\n");
-    ssscanf("%d", &r);
+    scanf("%d", &ir); //input r
+    if (n/2 < ir) r = n-ir;
+    else r = ir;
     unsigned long long int num = 1, denom = 1;
     for (unsigned long long int i = 0; i < r; i++)
         num *= n-i;
@@ -17,3 +18,4 @@ void nCr(void) {
     unsigned long long int result = num / denom;
     printf("%dC%d = %lld\n", n, r, result);
 }
+
