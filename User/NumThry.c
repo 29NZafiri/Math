@@ -32,21 +32,31 @@ void Num3() {
 }
 
 void Num4() {
-    int n, m;
+    int n = 1;
     printf("What is the first number?\n");
     ssscanf("%d", &n);
-    printf("What is the second number?\n");
-    ssscanf("%d", &m);
-    printf("The GCF of %d and %d is %d", m, n, GCF(n, m));
+    while (1) {
+        int m;
+        printf("What is the next number? (Enter 0 or 1 to exit)\n");
+        ssscanf("%d", &m);
+        if (m < 2) break;
+        printf("The GCF of %d and %d is %d\n", m, n, GCF(n, m));
+        n = GCF(n, m);
+    }
 }
 
 void Num5() {
-    int n, m;
+    int n = 1;
     printf("What is the first number?\n");
     ssscanf("%d", &n);
-    printf("What is the second number?\n");
-    ssscanf("%d", &m);
-    printf("The LCM of %d and %d is %d", m, n, LCM(n, m));
+    while (1) {
+        int m;
+        printf("What is the next number? (Enter 0 or 1 to exit)\n");
+        ssscanf("%d", &m);
+        if (m < 2) break;
+        printf("The LCM of %d and %d is %d\n", m, n, LCM(n, m));
+        n = LCM(n, m);
+    }
 }
 
 void Num6() {
@@ -112,7 +122,7 @@ void NumThry(void){
     "Use the Sieve of Eratosthenes (2)\n"
     "Find the prime factors of a number (3)\n"
     "Find the GCF using the Euclidian Algorithm (4)\n"
-    "Find the LCM of two numbers (5)\n"
+    "Find the LCM of some numbers (5)\n"
     "Take the Modulo of a number (6)\n"
     "Check for Modular Congruence (7)\n"
     "Find the Modular Inverse of a Number (8)\n"
