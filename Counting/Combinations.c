@@ -1,9 +1,8 @@
 #include <Cnt.h>
 
-unsigned long long int nCr(int n, int ir) {
-    int r;
-    if (n/2 < ir) r = n-ir;
-    else r = ir;
+unsigned long long int nCr(int n, int r) {
+    if (r > n) return 0;
+    if (n/2 < r) r = n-r;
     unsigned long long int num = 1, denom = 1;
     for (unsigned long long int i = 0; i < r; i++)
         num *= n-i;

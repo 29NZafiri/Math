@@ -5,25 +5,25 @@
 
 void Cnt1() {
      int n, k;
-     printf("How many objects? (n in nPk)");
+     printf("How many objects? (n in nPk)\n");
      ssscanf("%d", &n);
-     printf("How many spots? (k in nPk)");
+     printf("How many spots? (k in nPk)\n");
      ssscanf("%d", &k);
      printf("%dP%d is %llu", n, k, perms(n, k));
 }
 
 void Cnt2() {
     int n, r;
-    printf("How many objects? (n in nPr)");
+    printf("How many objects? (n in nCr)\n");
     ssscanf("%d", &n);
-    printf("How many spots? (r in nPr)");
+    printf("How many spots? (r in nCr)\n");
     ssscanf("%d", &r);
-    printf("%dP%d is %llu", n, r, nCr(n, r));
+    printf("%dC%d is %llu", n, r, nCr(n, r));
 }
 
 void Cnt3() {
     int n;
-    printf("What number?");
+    printf("What number?\n");
     ssscanf("%d", &n);
     fib num = nthNum(n);
     printf("F(%d) = ", n);
