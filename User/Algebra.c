@@ -19,7 +19,7 @@ void Alg1(void) {
 
     double coef[3] = {a, b, c};
 
-    if (a == 0) {
+    if (DbZero(a)) {
         // Prevent division by 0
         printf("a cannot be zero. Terminating early.\n");
         return;
