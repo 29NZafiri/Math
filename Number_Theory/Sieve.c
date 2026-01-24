@@ -2,14 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Constants.h"
-
-int power(int x,int y) {
-    int final = x;
-    for (int i = 2; i <= y; i++) {
-        final *= x;
-    }
-    return final;
-}
+#include "Power.h"
 
 int* sieve(const int n, int* primeCount) {
     int count = n; //How many primes are there

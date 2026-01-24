@@ -65,6 +65,8 @@ add_executable(Math main.c
         Analytical_Geometry/PrintPnt.c
         Geometry/Geo.h
         Stereometry/Strometry.h
+        Global_Funcs/Power.c
+        Global_Funcs/Power.h
 )
 
 target_include_directories(Math PUBLIC
