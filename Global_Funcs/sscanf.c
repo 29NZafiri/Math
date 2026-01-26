@@ -31,6 +31,52 @@ void ssscanf(const char* type, void* p) {
     }
 }
 
+void printPower(int pow) {
+    if (pow == 1) return;
+    int cnt = 0;
+    int tmp = pow;
+    while (tmp > 0) {
+        tmp /= 10;
+        cnt++;
+    }
+    for (int i = cnt - 1; i >= 0; i--) {
+        switch (pow/power(10, i) % 10) {
+            case 0:
+                printf("\u2070");
+                break;
+            case 1:
+                printf("\u00B9");
+                break;
+            case 2:
+                printf("\u00B2");
+                break;
+            case 3:
+                printf("\u00B3");
+                break;
+            case 4:
+                printf("\u2074");
+                break;
+            case 5:
+                printf("\u2075");
+                break;
+            case 6:
+                printf("\u2076");
+                break;
+            case 7:
+                printf("\u2077");
+                break;
+            case 8:
+                printf("\u2078");
+                break;
+            case 9:
+                printf("\u2079");
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 void spprintf(char* format, ...) {
     va_list args;
     unsigned long long length = strlen(format);
