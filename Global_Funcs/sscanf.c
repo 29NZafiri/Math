@@ -8,6 +8,7 @@
 #include "Constants.h"
 #include "spsqrt.h"
 #include "AnaGeo.h"
+#include "Power.h"
 
 void ssscanf(const char* type, void* p) {
     char num[BUFFER_SIZE];

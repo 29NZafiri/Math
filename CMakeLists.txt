@@ -67,6 +67,7 @@ add_executable(Math main.c
         Stereometry/Strometry.h
         Global_Funcs/Power.c
         Global_Funcs/Power.h
+        Counting/BinomialCoefs.c
 )
 
 target_include_directories(Math PUBLIC

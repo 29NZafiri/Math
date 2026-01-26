@@ -1,5 +1,6 @@
 #include "../Counting/Cnt.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "sscanf.h"
 
@@ -30,11 +31,57 @@ void Cnt3() {
     printFib(num);
 }
 
+void Cnt4() {
+    int x, y, pow;
+    printf("Expressions are assumed to be in the form (ax+by)\u207F\n");
+    printf("What is the coefficient of the x term (a)?\n");
+    ssscanf("%d", &x);
+    printf("What is the coefficient of the y term (b)?\n");
+    ssscanf("%d", &y);
+    printf("What is the power of the binomial (n)?\n");
+    ssscanf("%d", &pow);
+
+    int* coefs = binomCoefs(x, y, pow);
+
+    if (x == 1) printf("(x");
+    else if (x == -1) printf("(-x");
+    else printf("(%dx", x);
+
+    if (y == 1) printf("+y)");
+    else if (y == -1) printf("-y");
+    else printf("%+dy)", y);
+
+    printPower(pow);
+
+    printf(" = ");
+
+    if (pow == 1) {
+        printf("%dx+%dy", x, y);
+        free(coefs);
+        return;
+    }
+    if (coefs[0] == 1) printf("x");
+    else printf("%dx", coefs[0]);
+    printPower(pow);
+    for (int i = 1; i < pow; i++) {
+        printf("%+dx", coefs[i]);
+        printPower(pow-i);
+        printf("y");
+        printPower(i);
+    }
+    if (coefs[0] == 1) printf("+y");
+    else printf("%+dy\n", coefs[pow-1]);
+    printPower(pow);
+
+    free(coefs);
+}
+
 void cnt(void) {
     int choice;
     printf("Compute Permutations (1)\n"
     "Compute Combinations (2)\n"
     "Find the nth Fibonacci number (3)\n"
+    "Use the Binomial Theorem (4)\n"
     "What number?\n");
     ssscanf("%d", &choice);
     switch(choice) {
@@ -46,6 +93,9 @@ void cnt(void) {
             break;
         case 3:
             Cnt3();
+            break;
+        case 4:
+            Cnt4();
             break;
         default:
             break;
