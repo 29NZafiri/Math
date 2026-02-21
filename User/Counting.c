@@ -48,7 +48,7 @@ void Cnt4() {
     else printf("(%dx", x);
 
     if (y == 1) printf("+y)");
-    else if (y == -1) printf("-y");
+    else if (y == -1) printf("-y)");
     else printf("%+dy)", y);
 
     printPower(pow);
@@ -69,9 +69,10 @@ void Cnt4() {
         printf("y");
         printPower(i);
     }
-    if (coefs[0] == 1) printf("+y");
-    else printf("%+dy\n", coefs[pow-1]);
+    if (coefs[pow] == 1) printf("+y");
+    else printf("%+dy", coefs[pow]);
     printPower(pow);
+    printf("\n");
 
     free(coefs);
 }
