@@ -154,7 +154,7 @@ frac intSumFunc(const int* coefs) {
 frac intProdFunc(const int* coefs, const int cnt) {
     int a = coefs[0];
     int c = coefs[cnt-1];
-    int  G = GCF(a, c);
+    int G = GCF(a, c);
     if (a < 0) G *= -1;
     return (frac){neg(cnt-1) * c /G, a/G};
 }

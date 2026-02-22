@@ -4,6 +4,7 @@
 
 #include "Num.h"
 #include "Alg.h"
+#include "sscanf.h"
 
 int intSynthDiv(int* coefs, const int cnt, const int zero) { //Synthetic division for integers while mutating coefs
     for (int i = 1; i < cnt; i++) {
@@ -203,15 +204,34 @@ void printFctrsPoly(const int* coefs, const llfrac* zeros, const int cnt, const 
             tcnt--;
         }
         printf("(");
-        for (int i = 0; i < tcnt; i++) {
+        for (int i = 0; i < tcnt-1; i++) {
             remain[i].num /= llabs(er);
             if (remain[i].num == 0) continue;
             if (remain[i].denom == 1) {
-                if (remain[i].num == 1) printf("+x^%d", tcnt-i-1);
-                else if (remain[i].num == -1) printf("-x^%d", tcnt-i-1);
-                else printf("%+lldx^%d", remain[i].num, tcnt - i - 1);
+                if (remain[i].num == 1) printf("+x");
+                else if (remain[i].num == -1) printf("-x");
+                else printf("%+lldx", remain[i].num);
+                printPower(tcnt - i - 1);
             }
-            else printf("+(%lldx^%d)/%lld", remain[i].num, tcnt - i - 1, remain[i].denom);
+            else {
+                printf("+(%lldx", remain[i].num);
+                printPower(tcnt - i - 1);
+                printf(")/%lld", remain[i].denom);
+            }
+        }
+        if (tcnt) {
+            remain[tcnt-1].num /= llabs(er);
+            if (remain[tcnt-1].num == 0);
+            else if (remain[tcnt-1].denom == 1) {
+                if (remain[tcnt-1].num == 1) printf("+1");
+                else if (remain[tcnt-1].num == -1) printf("-1");
+                else printf("%+lld", remain[tcnt-1].num);
+            }
+            else {
+                printf("+(%lldx", remain[tcnt-1].num);
+                printPower(tcnt - tcnt-1 - 1);
+                printf(")/%lld", remain[tcnt-1].denom);
+            }
         }
         printf(")\n");
         free(remain);
