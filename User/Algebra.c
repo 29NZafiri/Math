@@ -147,13 +147,13 @@ void Alg5(void) {
     printf("What operation would you like to perform? Addition (1), Subtraction (2), Multiplication (3), Division (4), "
            "Finding Square Roots (5), Squaring (6), or Taking Absolute Value (7)\n");
     ssscanf("%d", &choice);
-    if (choice > 5) {
+    if (choice < 5) {
         printf("Enter the real part of the second number\n");
         ssscanf("%lf", &b.real);
         printf("Enter the imaginary part of the second number\n");
         ssscanf("%lf", &b.imag);
     }
-    char* op = "+-*/√^|";
+    char* op[] = {"+", "-", "*", "/", "√", "^2", "|"};
     switch (choice) {
         case 1:
             result = addComplex(a, b); break;
@@ -175,18 +175,20 @@ void Alg5(void) {
     }
     if (choice < 5) {
         printComplex(a);
-        printf("%c", op[choice]);
+        printf("%s", op[choice-1]);
         printComplex(b);
         printf("=");
         printComplex(result);
     }
     else {
-        if (choice == 5 || choice == 7) printf("%c", op[choice]);
+        if (choice == 5 || choice == 7) printf("%s", op[choice-1]);
         printComplex(a);
-        if (choice != 7) printf("%c", op[choice]);
-        spprintf("= %i", result);
-        if (choice == 7) spprintf("& %i", multComplex(result, (dbComplex){-1, 0}));
+        if (choice != 5) printf("%s", op[choice-1]);
+        if (choice == 7) printf(" = %.15g", result.real);
+        else spprintf(" = %i", result);
+        if (choice == 5) spprintf(" & %i", multComplex(result, (dbComplex){-1, 0}));
     }
+    printf("\n");
 }
 
 void Alg6(void) {

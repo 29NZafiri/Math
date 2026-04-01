@@ -15,7 +15,7 @@ dbComplex minusComplex(dbComplex a, dbComplex b) {
 }
 
 dbComplex multComplex(dbComplex a, dbComplex b) {
-    dbComplex result = {a.real * b.real - a.imag * b.imag, a.real * b.imag + b.imag * a.real};
+    dbComplex result = {a.real * b.real - a.imag * b.imag, a.real * b.imag + a.imag * b.real};
     return result;
 }
 
@@ -33,11 +33,11 @@ double absComplex(dbComplex a) {
 
 dbComplex sqrtComplex(dbComplex a) { //returns such that real part is positive
     dbComplex result;
-    if (a.real == 0 && a.imag == 0) {
+    if (DbZero(a.real) && DbZero(a.imag)) {
         result.real = 0;
         result.imag = 0;
     }
-    else if (a.imag == 0 && a.real < 0) {
+    else if (DbZero(a.real) && a.real < 0) {
         result.real = 0;
         result.imag = sqrt(-a.real);
     }
@@ -63,5 +63,7 @@ _Bool ComplexInt(dbComplex a) {
 }
 
 void printComplex(dbComplex a) {
-    printf("%.15g%+.15gi", a.real, a.imag);
+    if (DbZero(a.imag)) printf("%.15g", a.real);
+    else if (DbZero(a.real)) printf("%.15gi", a.imag);
+    else printf("%.15g%+.15gi", a.real, a.imag);
 }
