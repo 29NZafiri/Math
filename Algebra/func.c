@@ -29,8 +29,11 @@ int* intPromptFunc(int* cnt) {
     }
     int* coefs = malloc(sizeof(int) * *cnt);
     for (int i = 0; i < *cnt; i++) {
-        printf("Enter the coefficient of x");
-        printPower(*cnt - i - 1);
+        if (*cnt - i - 1 == 0) printf("Enter the constant term");
+        else {
+            printf("Enter the coefficient of x");
+            printPower(*cnt - i - 1);
+        }
         printf("\n");
         ssscanf("%d", &coefs[i]);
     }
@@ -65,9 +68,11 @@ double* promptFunc(int* cnt) {
     }
     double* coefs = malloc(sizeof(double) * *cnt);
     for (int i = 0; i < *cnt; i++) {
-        printf("Enter the coefficient of x");
-        printPower(*cnt - i - 1);
-        printf("\n");
+        if (*cnt - i - 1 == 0) printf("Enter the coefficient for the constant term");
+        else {
+            printf("Enter the coefficient of x");
+            printPower(*cnt - i - 1);
+        }printf("\n");
         ssscanf("%lf", &coefs[i]);
     }
     int xtraLead = 0;
