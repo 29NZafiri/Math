@@ -68,6 +68,7 @@ add_executable(Math main.c
         Global_Funcs/Power.c
         Global_Funcs/Power.h
         Counting/BinomialCoefs.c
+        Algebra/RootsUnity.c
 )
 
 target_include_directories(Math PUBLIC

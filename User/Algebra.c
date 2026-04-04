@@ -4,6 +4,7 @@
 
 #include "../Algebra/Alg.h"
 #include "FloatMath.h"
+#include "Num.h"
 #include "spsqrt.h"
 #include "sscanf.h"
 
@@ -235,6 +236,41 @@ void Alg8(void) {
     free(zeros);
 }
 
+void Alg9(void) {
+    int pow;
+    printf("What roots of unity would you like?\n");
+    ssscanf("%d", &pow);
+    frac* rts = rtsUnity(pow);
+    printf("The %d roots of unity are:\n", pow);
+    for (int i = 0; i < pow; i++) {
+        if (i == 0) {
+            printf("1, ");
+            continue;
+        }
+        int G = GCF(rts[i].num, rts[i].denom);
+        printf("e\u2DE7");
+        printPower(rts[i].num/G);
+        printf("\u2071\u2E0D");
+        printPower(rts[i].denom/G);
+        printf(", ");
+    }
+    printf("\nThe primitive %d roots of unity are: ", pow);
+    int cnt = 0;
+    for (int i = 0; i < pow; i++) {
+        int num = rts[i].num, denom = rts[i].denom;
+        int G = GCF(num/2, denom);
+        if (G != 1) continue;
+        printf("e\u2DE7");
+        printPower(num/G);
+        printf("\u2071\u2E0D");
+        printPower(denom/G);
+        printf(", ");
+        cnt++;
+    }
+    printf("\nThere are %d primitive %d roots of unity\n", cnt, pow);
+    free(rts);
+}
+
 void Algebra(void){
     int choice;
     printf("Solve a Quadratic (1)\n"
@@ -245,6 +281,7 @@ void Algebra(void){
     "Synthetically Divide (6)\n"
     "Plug values into a Function (7)\n"
     "Factor a Polynomial (8)\n"
+    "Find the nth Roots of Unity (9)\n"
     "What number?\n");
     ssscanf("%d", &choice);
     switch(choice) {
@@ -271,6 +308,9 @@ void Algebra(void){
             break;
         case 8:
             Alg8();
+            break;
+        case 9:
+            Alg9();
             break;
         default:
             break;

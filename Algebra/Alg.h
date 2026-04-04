@@ -46,4 +46,6 @@ dbfrac xVertexQuad(const double* coefs);
 
 dbPnt syseq(dbSys sys1, dbSys sys2);
 
+frac* rtsUnity(int pow);
+
 #endif //MATH_ALG_H
