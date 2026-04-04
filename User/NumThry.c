@@ -112,7 +112,7 @@ void Num8() {
         ssscanf("%d", &b);
         int i = modinv(a, b);
         if (i) printf("%d has a modular inverse of %d mod %d.\n", a, i, b);
-        else printf("%d has no modular inverse mod %d", a, b);
+        else printf("%d has no modular inverse mod %d.\n", a, b);
     }
 }
 
